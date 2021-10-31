@@ -36,3 +36,15 @@ let rev ls =
 (* 6 *)
 let is_palindrome ls =
     rev ls = ls
+
+(* 7 *)
+type 'a node =
+    | One of 'a
+    | Many of 'a node list
+
+let flatten s =
+    let rec aux acc = function
+        | ( One x ) :: xs -> aux ( x :: acc ) xs
+        | ( Many x ) :: xs -> aux ( ( aux [] x ) @ acc ) xs
+        | [] -> acc
+    in aux [] s |> rev
