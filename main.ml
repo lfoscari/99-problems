@@ -164,3 +164,13 @@ let rec insert_at y index = function
 let rec range current = function
     | final when current = final -> [current]
     | final -> current :: range ( current + 1 ) final
+
+(* 23 *)
+let rec rand_select ls = function
+    | 0 -> []
+    | amount ->
+        let r = length ls |> Random.int in (
+        match at ( r + 1 ) ls with
+        | Some x -> x :: ( rand_select ( remove_at r ls ) ( amount - 1 ) )
+        | None -> raise Not_found )
+
