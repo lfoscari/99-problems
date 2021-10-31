@@ -60,5 +60,13 @@ let pack ls =
     let rec aux cur acc = function
         | x :: ( y :: _ as xs ) when x = y -> aux ( x :: cur ) acc xs
         | x :: xs -> aux [] ( ( x :: cur ) :: acc ) xs
-        | [] -> cur :: acc |> rev
+        | [] -> acc |> rev
     in aux [] [] ls
+
+(* 10 *)
+let encode ls =
+    let rec aux acc = function
+        | [] -> acc
+        | ( x :: xs ) :: rest -> aux ( ( 1 + length xs, x ) :: acc )  rest
+        | [] :: _ -> raise Not_found
+    in pack ls |> aux [] |> rev
