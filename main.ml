@@ -132,3 +132,11 @@ let split ls size =
         | x :: xs when index < size -> aux ( x :: acc ) ( index + 1 ) xs
         | xs -> rev acc, xs
     in aux [] 0 ls
+
+(* 18 *)
+let slice ls l r =
+    let rec aux acc index = function
+        | _ :: xs when index < l -> aux acc ( index + 1 ) xs
+        | x :: xs when index <= r -> aux ( x :: acc ) ( index + 1 ) xs
+        | _ -> rev acc
+    in aux [] 0 ls
