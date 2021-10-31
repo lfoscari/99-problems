@@ -85,3 +85,9 @@ let encode ls =
                 | n -> aux ( Many ( n, x ) :: acc ) rest )
         | [] :: _ -> raise Not_found
     in pack ls |> aux [] |> rev
+
+(* 12 *)
+let rec decode = function
+    | One x :: xs | Many ( 1, x ) :: xs -> x :: decode xs
+    | Many ( n, x ) :: xs -> x :: decode ( Many ( n - 1, x ) :: xs )
+    | [] -> []
