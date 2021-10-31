@@ -100,7 +100,7 @@ let encode ls =
     in let rec aux count acc = function
         | x :: ( y :: _ as xs ) when x = y -> aux ( count + 1 ) acc xs
         | x :: xs -> aux 0 ( ( rle x ( count + 1 ) ) :: acc ) xs
-        | [] -> acc |> rev
+        | [] -> rev acc
     in aux 0 [] ls
 
 (* 14 *)
@@ -125,3 +125,10 @@ let drop ls index =
         | x :: xs -> x :: aux ( inc + 1 ) xs
         | [] -> []
     in aux 1 ls
+
+(* 17 *)
+let split ls size =
+    let rec aux acc index = function
+        | x :: xs when index < size -> aux ( x :: acc ) ( index + 1 ) xs
+        | xs -> rev acc, xs
+    in aux [] 0 ls
