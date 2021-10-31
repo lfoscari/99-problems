@@ -117,3 +117,11 @@ let replicate ls count =
         | x :: xs -> ( expand x count ) @ aux xs
         | [] -> []
     in aux ls
+
+(* 16 *)
+let drop ls index =
+    let rec aux inc = function
+        | _ :: xs when inc = index -> aux 1 xs
+        | x :: xs -> x :: aux ( inc + 1 ) xs
+        | [] -> []
+    in aux 1 ls
