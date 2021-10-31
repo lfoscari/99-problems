@@ -159,3 +159,8 @@ let rec insert_at y index = function
     | xs when index = 0 -> y :: xs
     | x :: xs -> x :: ( insert_at y ( index - 1 ) xs )
     | [] -> []
+
+(* 22 *)
+let rec range current = function
+    | final when current = final -> [current]
+    | final -> current :: range ( current + 1 ) final
