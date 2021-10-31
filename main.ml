@@ -140,3 +140,10 @@ let slice ls l r =
         | x :: xs when index <= r -> aux ( x :: acc ) ( index + 1 ) xs
         | _ -> rev acc
     in aux [] 0 ls
+
+(* 19 *)
+let rec rotate ls n =
+    match n, ls with
+    | 0, _ | _, [] -> ls
+    | _n, _ when _n < 0 -> rotate ls ( ( length ls ) + _n )
+    | _n, x :: xs -> rotate ( xs @ [x] ) ( _n - 1 )
