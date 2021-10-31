@@ -48,3 +48,17 @@ let flatten s =
         | ( Many x ) :: xs -> aux ( ( aux [] x ) @ acc ) xs
         | [] -> acc
     in aux [] s |> rev
+
+(* 8 *)
+let compress ls =
+    let rec aux acc = function
+        | x :: y :: xs when x = y -> aux acc ( x :: xs )
+        | x :: y :: xs -> aux ( x :: acc ) ( y :: xs )
+        | [x] -> x :: acc
+        | [] -> acc
+    in aux [] ls |> rev
+let rec compress = function
+    | x :: ( y :: _ as xs ) when x = y -> compress xs
+    | x :: xs -> x :: compress xs
+    | [] -> []
+
