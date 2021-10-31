@@ -70,3 +70,18 @@ let encode ls =
         | ( x :: xs ) :: rest -> aux ( ( 1 + length xs, x ) :: acc )  rest
         | [] :: _ -> raise Not_found
     in pack ls |> aux [] |> rev
+
+(* 11 *)
+type 'a rle =
+    | One of 'a
+    | Many of int * 'a
+
+let encode ls =
+    let rec aux acc = function
+        | [] -> acc
+        | ( x :: xs ) :: rest -> (
+                match ( 1 + length xs ) with
+                | 1 -> aux ( One x :: acc ) rest
+                | n -> aux ( Many ( n, x ) :: acc ) rest )
+        | [] :: _ -> raise Not_found
+    in pack ls |> aux [] |> rev
