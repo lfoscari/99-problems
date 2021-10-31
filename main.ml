@@ -15,7 +15,7 @@ let rec last_two = function
 (* 3 *)
 let rec at index ls =
     match ls with
-    | x :: _  when index == 1 -> Some x
+    | x :: _  when index = 1 -> Some x
     | _ :: xs when index > 1 -> at ( index - 1 ) xs
     | _ -> None
 
@@ -32,3 +32,7 @@ let rev ls =
         | x :: xs -> aux ( x :: acc ) xs
         | [] -> acc
     in aux [] ls
+
+(* 6 *)
+let is_palindrome ls =
+    rev ls = ls
