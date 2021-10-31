@@ -50,15 +50,15 @@ let flatten s =
     in aux [] s |> rev
 
 (* 8 *)
-let compress ls =
-    let rec aux acc = function
-        | x :: y :: xs when x = y -> aux acc ( x :: xs )
-        | x :: y :: xs -> aux ( x :: acc ) ( y :: xs )
-        | [x] -> x :: acc
-        | [] -> acc
-    in aux [] ls |> rev
 let rec compress = function
     | x :: ( y :: _ as xs ) when x = y -> compress xs
     | x :: xs -> x :: compress xs
     | [] -> []
 
+(* 9 *)
+let pack ls =
+    let rec aux cur acc = function
+        | x :: ( y :: _ as xs ) when x = y -> aux ( x :: cur ) acc xs
+        | x :: xs -> aux [] ( ( x :: cur ) :: acc ) xs
+        | [] -> cur :: acc |> rev
+    in aux [] [] ls
