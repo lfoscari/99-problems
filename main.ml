@@ -6,3 +6,8 @@ let rec last = function
     | _ :: xs -> last xs
     | [] -> None
 
+(* 2 *)
+let rec last_two = function
+    | x :: y :: [] -> Some (x, y)
+    | _ :: xs -> last_two xs
+    | [] -> None
