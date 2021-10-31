@@ -18,3 +18,10 @@ let rec at index ls =
     | x :: _  when index == 1 -> Some x
     | _ :: xs when index > 1 -> at ( index - 1 ) xs
     | _ -> None
+
+(* 4 *)
+let length ls =
+    let rec aux n = function
+        | _ :: xs -> aux ( n + 1 ) xs
+        | [] -> n
+    in aux 0 ls
