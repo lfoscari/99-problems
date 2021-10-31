@@ -107,3 +107,13 @@ let encode ls =
 let rec duplicate = function
     | x :: xs -> x :: x :: duplicate xs
     | [] -> []
+
+(* 15 *)
+let replicate ls count =
+    let rec expand x = function
+        | 0 -> []
+        | n -> x :: expand x ( n - 1 )
+    in let rec aux = function
+        | x :: xs -> ( expand x count ) @ aux xs
+        | [] -> []
+    in aux ls
