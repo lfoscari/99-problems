@@ -91,3 +91,14 @@ let rec decode = function
     | One x :: xs | Many ( 1, x ) :: xs -> x :: decode xs
     | Many ( n, x ) :: xs -> x :: decode ( Many ( n - 1, x ) :: xs )
     | [] -> []
+
+(* 13 *)
+let encode ls =
+    let rle x = function
+        | 0 -> One x
+        | n -> Many ( n, x )
+    in let rec aux count acc = function
+        | x :: ( y :: _ as xs ) when x = y -> aux ( count + 1 ) acc xs
+        | x :: xs -> aux 0 ( ( rle x ( count + 1 ) ) :: acc ) xs
+        | [] -> acc |> rev
+    in aux 0 [] ls
