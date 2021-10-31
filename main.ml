@@ -189,3 +189,10 @@ let rec extract size = function
     | xs when size = 1 -> List.map ( fun x -> [x] ) xs
     | x :: xs -> ( extract ( size - 1 ) xs |> add x ) @ ( extract size xs )
     | [] -> []
+
+(* 27 *)
+let rec group ls = function
+    | [] -> raise Not_found
+    | g :: gs -> List.map ( fun xs ->
+            xs :: ( group xs gs )
+        ) ( extract g ls )
