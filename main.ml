@@ -153,3 +153,9 @@ let rec remove_at index = function
     | x :: xs when index = 0 -> xs
     | x :: xs -> x :: ( remove_at ( index - 1 ) xs )
     | [] -> []
+
+(* 21 *)
+let rec insert_at y index = function
+    | xs when index = 0 -> y :: xs
+    | x :: xs -> x :: ( insert_at y ( index - 1 ) xs )
+    | [] -> []
