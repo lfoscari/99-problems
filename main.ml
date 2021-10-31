@@ -174,3 +174,6 @@ let rec rand_select ls = function
         | Some x -> x :: ( rand_select ( remove_at r ls ) ( amount - 1 ) )
         | None -> raise Not_found )
 
+(* 24 *)
+let rec lotto_select amount limit =
+    rand_select ( range 1 limit ) amount
