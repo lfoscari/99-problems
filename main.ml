@@ -181,3 +181,11 @@ let rec lotto_select amount limit =
 (* 25 *)
 let permutation ls =
     rand_select ls ( length ls )
+
+(* 26 *)
+let rec add x = List.map ( fun xs -> x :: xs )
+
+let rec extract size = function
+    | xs when size = 1 -> List.map ( fun x -> [x] ) xs
+    | x :: xs -> ( extract ( size - 1 ) xs |> add x ) @ ( extract size xs )
+    | [] -> []
