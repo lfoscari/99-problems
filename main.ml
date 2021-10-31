@@ -177,3 +177,7 @@ let rec rand_select ls = function
 (* 24 *)
 let rec lotto_select amount limit =
     rand_select ( range 1 limit ) amount
+
+(* 25 *)
+let permutation ls =
+    rand_select ls ( length ls )
