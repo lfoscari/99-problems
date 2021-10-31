@@ -25,3 +25,10 @@ let length ls =
         | _ :: xs -> aux ( n + 1 ) xs
         | [] -> n
     in aux 0 ls
+
+(* 5 *)
+let rev ls =
+    let rec aux acc = function
+        | x :: xs -> aux ( x :: acc ) xs
+        | [] -> acc
+    in aux [] ls
