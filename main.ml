@@ -102,3 +102,8 @@ let encode ls =
         | x :: xs -> aux 0 ( ( rle x ( count + 1 ) ) :: acc ) xs
         | [] -> acc |> rev
     in aux 0 [] ls
+
+(* 14 *)
+let rec duplicate = function
+    | x :: xs -> x :: x :: duplicate xs
+    | [] -> []
