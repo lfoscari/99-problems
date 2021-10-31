@@ -147,3 +147,9 @@ let rec rotate ls n =
     | 0, _ | _, [] -> ls
     | _n, _ when _n < 0 -> rotate ls ( ( length ls ) + _n )
     | _n, x :: xs -> rotate ( xs @ [x] ) ( _n - 1 )
+
+(* 20 *)
+let rec remove_at index = function
+    | x :: xs when index = 0 -> xs
+    | x :: xs -> x :: ( remove_at ( index - 1 ) xs )
+    | [] -> []
