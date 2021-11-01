@@ -193,6 +193,9 @@ let rec extract size = function
 (* 27 *)
 let rec group ls = function
     | [] -> raise Not_found
-    | g :: gs -> List.map ( fun xs ->
-            xs :: ( group xs gs )
-        ) ( extract g ls )
+    | g :: [] -> extract g ls |> List.map ( fun xs -> [xs] )
+    | g :: gs ->
+        List.map ( fun xs ->
+            let neg = List.filter ( fun x -> not ( List.mem x xs ) ) ls in (* ["c"; "d"] *)
+            add xs ( group neg gs )
+        ) ( extract g ls ) |> List.flatten
