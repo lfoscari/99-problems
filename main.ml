@@ -277,3 +277,10 @@ let all_primes r l =
         | n when is_prime n -> aux ( n :: acc ) ( n + 1 )
         | n -> aux acc ( n + 1 )
     in aux [] r
+
+(* 40 *)
+let goldbach x =
+    let rec aux = function
+        | y when is_prime y && is_prime ( x - y ) -> y, x - y
+        | y -> aux ( y + 1 )
+    in aux 2
