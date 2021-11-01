@@ -204,10 +204,20 @@ let rec group ls = function
 let length_sort =
     List.sort ( fun a b -> compare ( length a ) ( length b ) )
 
-
-
+(* 29 *)
+let frequency_sort ls =
+    let count x ls = List.filter ( fun y -> x = y ) ls |> length in
+    let lengths = List.map length ls in
+    List.sort ( fun a b ->
+        compare ( count ( length a ) lengths ) ( count ( length b ) lengths ) ) ls
 
 
 (* Arithmetic *)
 
-(* 29 *)
+(* 31 *)
+let is_prime x =
+    let rec aux = function
+        | y when y = x -> true
+        | y when y > x || x mod y = 0 -> false
+        | y -> aux ( y + 1 )
+    in aux 2
