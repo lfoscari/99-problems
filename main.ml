@@ -270,3 +270,10 @@ let timeit f x =
     let _ = f x in
     Sys.time() -. t
 
+(* 39 *)
+let all_primes r l =
+    let rec aux acc = function
+        | n when n >= l -> acc
+        | n when is_prime n -> aux ( n :: acc ) ( n + 1 )
+        | n -> aux acc ( n + 1 )
+    in aux [] r
