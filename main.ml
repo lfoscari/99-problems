@@ -239,3 +239,11 @@ let phi x =
         else if coprime cur x then aux ( acc + 1 ) ( cur + 1 )
         else aux acc ( cur + 1 )
     in aux 0 1
+
+(* 35 *)
+let factors x =
+    let rec aux acc x = function
+        | y when y > x -> rev acc
+        | y when x mod y = 0 -> aux ( y :: acc ) ( x / y ) 2
+        | y -> aux acc x ( y + 1 )
+    in aux [] x 2
