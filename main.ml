@@ -199,3 +199,15 @@ let rec group ls = function
             let neg = List.filter ( fun x -> not ( List.mem x xs ) ) ls in (* ["c"; "d"] *)
             add xs ( group neg gs )
         ) ( extract g ls ) |> List.flatten
+
+(* 28 *)
+let length_sort =
+    List.sort ( fun a b -> compare ( length a ) ( length b ) )
+
+
+
+
+
+(* Arithmetic *)
+
+(* 29 *)
