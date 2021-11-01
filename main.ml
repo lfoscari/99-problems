@@ -231,3 +231,11 @@ let rec gcd x y =
 (* 33 *)
 let coprime x y =
     gcd x y = 1
+
+(* 34 *)
+let phi x =
+    let rec aux acc cur =
+        if cur = x then acc
+        else if coprime cur x then aux ( acc + 1 ) ( cur + 1 )
+        else aux acc ( cur + 1 )
+    in aux 0 1
