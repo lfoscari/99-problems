@@ -263,3 +263,10 @@ let factors x =
 let phi_improved x =
     let rec pow x a = if a > 1 then x * ( pow x ( a - 1 ) ) else 1 in
     List.fold_left ( fun acc ( y, n ) -> acc * ( y - 1 ) * ( pow y ( n - 1 ) ) ) 1 ( factors x )
+
+(* 38 *)
+let timeit f x =
+    let t = Sys.time() in
+    let _ = f x in
+    Sys.time() -. t
+
