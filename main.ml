@@ -247,3 +247,14 @@ let factors x =
         | y when x mod y = 0 -> aux ( y :: acc ) ( x / y ) 2
         | y -> aux acc x ( y + 1 )
     in aux [] x 2
+
+(* 36 *)
+let factors x =
+    let rec aux acc x = function
+        | y when y > x -> rev acc
+        | y when x mod y = 0 -> (
+                match acc with
+                | ( z, n ) :: xs when z = y -> aux ( ( z, n + 1 ) :: xs ) ( x / y ) 2
+                | xs -> aux ( ( y, 1 ) :: xs ) ( x / y ) 2 )
+        | y -> aux acc x ( y + 1 )
+    in aux [] x 2
