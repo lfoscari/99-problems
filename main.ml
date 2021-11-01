@@ -221,3 +221,9 @@ let is_prime x =
         | y when y > x || x mod y = 0 -> false
         | y -> aux ( y + 1 )
     in aux 2
+
+(* 32 *)
+let rec gcd x y =
+    if x = y then x
+    else if x > y then gcd ( x - y ) y
+    else gcd ( y - x ) x
