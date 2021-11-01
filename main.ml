@@ -284,3 +284,14 @@ let goldbach x =
         | y when is_prime y && is_prime ( x - y ) -> y, x - y
         | y -> aux ( y + 1 )
     in aux 2
+
+(* 41 *)
+let goldbach_list r l =
+    let rec aux acc = function
+        | y when y > l -> rev acc
+        | y -> aux ( ( y, goldbach y ) :: acc ) ( y + 2 )
+    in aux [] ( if r mod 2 = 0 then r else r + 1 )
+
+
+
+(* Logic and codes *)
