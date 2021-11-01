@@ -227,3 +227,7 @@ let rec gcd x y =
     if x = y then x
     else if x > y then gcd ( x - y ) y
     else gcd ( y - x ) x
+
+(* 33 *)
+let coprime x y =
+    gcd x y = 1
