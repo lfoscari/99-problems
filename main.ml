@@ -295,3 +295,25 @@ let goldbach_list r l =
 
 
 (* Logic and codes *)
+
+type bool_expr =
+    | Var of string
+    | Not of bool_expr
+    | And of bool_expr * bool_expr
+    | Or of bool_expr * bool_expr
+
+(* 46 & 47 *)
+let rec table2 a b expr =
+    let rec eval a b val_a val_b = function
+        | Var c when c = a -> val_a
+        | Var c when c = b -> val_b
+        | Not e -> not ( eval a b val_a val_b e )
+        | And ( e, f ) -> ( eval a b val_a val_b e ) && ( eval a b val_a val_b f )
+        | Or ( e, f ) -> ( eval a b val_a val_b e ) || ( eval a b val_a val_b f )
+        | Var c -> raise Not_found
+    in [
+        (true,  true,  eval a b true true   expr);
+        (true,  false, eval a b true false  expr);
+        (false, true,  eval a b false true  expr);
+        (false, false, eval a b false false expr)
+    ]
